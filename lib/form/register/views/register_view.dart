@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile2/app/routes/app_pages.dart';
 
 import '../controllers/register_controller.dart';
 
@@ -9,7 +10,7 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create an Account')),
+
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(
@@ -21,9 +22,8 @@ class RegisterView extends GetView<RegisterController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('assets/image/logo.png', height: 250),
+              Image.asset('assets/image/logo.png', height: 200),
               const SizedBox(height: 20),
-
               const SizedBox(height: 30),
               TextField(
                 // controller: controller.emailController,
@@ -62,10 +62,10 @@ class RegisterView extends GetView<RegisterController> {
                       // Handle Log In logic
                       print("Hello Login");
                     },
-                    child: Text('Sign in'),
+                    child: const Text('Sign in'),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      textStyle: TextStyle(fontSize: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      textStyle: const TextStyle(fontSize: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0),
                       ),
@@ -94,9 +94,9 @@ class RegisterView extends GetView<RegisterController> {
                         print('Facebook login pressed');
                       },
                     ),
-                    SizedBox(width: 20.0), // Spacing between icons
+                    const SizedBox(width: 20.0), // Spacing between icons
                     IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.mail_outline,
                         size: 40.0,
                         color: Colors.redAccent,
@@ -105,6 +105,29 @@ class RegisterView extends GetView<RegisterController> {
                         // Handle Gmail login
                         print('Gmail login pressed');
                       },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  print("Move to Login Screen");
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView())); //<--  You'd need a LoginView()
+                },
+                child: Row(
+                  children: [
+                    const Text(
+                      "Already have an account? ",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
+                    InkWell(
+                      child: Text("Login", style: TextStyle(
+                        color: Colors.blue, fontSize: 18,
+                        decoration: TextDecoration.underline
+                      ),),
+                      onTap: () => {Get.toNamed(Routes.LOGINFORM)},
+
                     ),
                   ],
                 ),

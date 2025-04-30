@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:mobile2/app/routes/app_pages.dart';
 
 import '../controllers/loginform_controller.dart';
 
 class LoginformView extends GetView<LoginformController> {
   const LoginformView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create an Account'),
-      ),
+
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(
-            top: 20,
-            left: 30,
-            right: 30,
-            bottom: 30,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -29,81 +23,82 @@ class LoginformView extends GetView<LoginformController> {
               ),
               const SizedBox(height: 20),
 
-
               const SizedBox(height: 30),
               TextField(
                 // controller: controller.emailController,
-                // CONNECTED TO CONTROLLER
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'email',
+                  labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 15),
               TextField(
-                // controller: controller.phoneController, // CONNECTED TO CONTROLLER
+                // controller: controller.passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  labelText: 'password',
+                  labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  width: double.infinity, // Make the button take full width
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Handle Log In logic
-                      print("Hello Login");
-                    },
-                    child: Text('Sign in'),
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      textStyle: TextStyle(fontSize: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      backgroundColor: Colors.red, // Example background color
-                      foregroundColor: Colors.white,
-
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // controller.login(); // Connect to controller logic
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    textStyle: const TextStyle(fontSize: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
                   ),
+                  child: const Text('Sign In'),
                 ),
               ),
-              // Social Login Buttons
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // Center icons horizontally
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(
-                        Icons.facebook,
-                        size: 40.0,
-                        color: Colors.blue[700],
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.facebook, size: 40.0, color: Colors.blue[700]),
+                    onPressed: () {
+                      print('Facebook login pressed');
+                    },
+                  ),
+                  const SizedBox(width: 20.0),
+                  IconButton(
+                    icon: const Icon(Icons.mail_outline, size: 40.0, color: Colors.redAccent),
+                    onPressed: () {
+                      print('Gmail login pressed');
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't have an account? ",
+                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                  ),
+                  InkWell(
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
                       ),
-                      onPressed: () {
-                        // Handle Facebook login
-                        print('Facebook login pressed');
-                      },
                     ),
-                    SizedBox(width: 20.0), // Spacing between icons
-                    IconButton(
-                      icon: Icon(
-                        Icons.mail_outline,
-                        size: 40.0,
-                        color: Colors.redAccent,
-                      ),
-                      onPressed: () {
-                        // Handle Gmail login
-                        print('Gmail login pressed');
-                      },
-                    ),
-                  ],
-                ),
+                    onTap: () => Get.toNamed(Routes.REGISTER), // <-- make sure Routes.LOGIN exists
+                  ),
+                ],
               ),
             ],
           ),
