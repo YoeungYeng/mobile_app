@@ -50,26 +50,7 @@ class LoginView extends GetView<LoginController> {
               // sign in button
               SizedBox(height: 16.0), // Spacing
               // Sign Up Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Handle Sign Up logic
-                    Get.toNamed(Routes.REGISTER);
-                  },
-                  child: Text('Sign up'),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                    textStyle: TextStyle(fontSize: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    backgroundColor: Colors.red, // Example background color
-                    foregroundColor: Colors.white,
 
-                  ),
-                ),
-              ),
               SizedBox(height: 30.0), // Spacing
               // Social Login Buttons
               Row(
