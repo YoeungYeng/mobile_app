@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:mobile2/app/modules/home/model/Product.dart';
+import 'package:image_network/image_network.dart';
 import '../controllers/home_controller.dart';
 // Ensure this import is correct
 
@@ -10,9 +11,12 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('HomeView'), centerTitle: true),
-
-      body: Column(children: [_buildHeader(), Expanded(child: _buildGrid())]),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40.0),
+        child: Column(
+          children: [_buildHeader(), Expanded(child: _buildGrid())],
+        ),
+      ),
       bottomNavigationBar: _buildBottomNavigationBar(),
       backgroundColor: const Color.fromRGBO(230, 158, 243, 1),
     );
@@ -54,8 +58,13 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildGrid() {
-    return Obx(
-      () => GridView.builder(
+    final controller =  Get.put<HomeController>(HomeController());
+    List<Data> item = controller.productList;
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return Center(child: CircularProgressIndicator());
+      }
+      return GridView.builder(
         padding: const EdgeInsets.all(8.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -63,13 +72,74 @@ class HomeView extends GetView<HomeController> {
           mainAxisSpacing: 16,
           childAspectRatio: 0.75,
         ),
-        itemCount: controller.foodItems.length,
+        itemCount: controller.productList.length,
         itemBuilder: (_, index) {
-          final FoodItems item = controller.foodItems[index];
-          return _foodItem(item, index);
+
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start, // Align items to the start
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                  child: Row(
+                    mainAxisAlignment:
+                    MainAxisAlignment.end, // Align favorite icon to the end
+                    children: [],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Center(
+                      child: ImageNetwork(image: "${item[index].image}", height: 100, width: 100)
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    item[index].title.toString(),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Rp. ${item[index].price}",
+                        style: const TextStyle(
+                          color: Colors.redAccent,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Icon(
+                        Icons.add_circle,
+                        color: Colors.redAccent,
+                        size: 24.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );;
         },
-      ),
-    );
+      ); // <-- this was missing
+    });
   }
 
   Widget _buildBottomNavigationBar() {
@@ -91,89 +161,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _foodItem(FoodItems item, int index) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, // Align items to the start
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-            child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.end, // Align favorite icon to the end
-              children: [
-                InkWell(
-                  child: Obx(
-                    () => Icon(
-                      item.isFavorite.value
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color:
-                          item.isFavorite.value
-                              ? Colors.redAccent
-                              : Colors.grey,
-                      size: 24.0,
-                    ),
-                  ),
-                  onTap: () => controller.toggleFavorite(item),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 2.0),
-              child: Center(
-                child: Image.asset(
-                  item.image,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              item.name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Rp. ${item.price}",
-                  style: const TextStyle(
-                    color: Colors.redAccent,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const Icon(
-                  Icons.add_circle,
-                  color: Colors.redAccent,
-                  size: 24.0,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _foodItem(ProductModel item) {
+  //
+  // }
 }

@@ -1,53 +1,69 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:mobile2/app/modules/home/model/Product.dart';
 
 class HomeController extends GetxController {
-  final foodItems =
-      <FoodItems>[
-        FoodItems(
-          name: 'Ji-Pyeong Tuna Salad',
-          price: 45.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-        FoodItems(
-          name: 'Another Tuna Salad',
-          price: 50.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-        FoodItems(
-          name: 'Ji-Pyeong Tuna Salad',
-          price: 45.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-        FoodItems(
-          name: 'Another Tuna Salad',
-          price: 50.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-        FoodItems(
-          name: 'Ji-Pyeong Tuna Salad',
-          price: 45.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-        FoodItems(
-          name: 'Another Tuna Salad',
-          price: 50.000,
-          image: "assets/image/logo.png",
-          isFavorite: false.obs,
-        ),
-      ].obs;
+  var productList = <Data>[].obs;
+  var isLoading = true.obs;
 
-  void toggleFavorite(FoodItems item) {
-    item.isFavorite.value = !item.isFavorite.value;
+
+  // fetch api
+  Future<void> getProduct() async {
+    const String urlAPI = "http://127.0.0.1:8000/api/getAllProduct";
+
+    try {
+      final response = await http.get(Uri.parse(urlAPI));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> decodedBody = jsonDecode(response.body);
+
+        // Safely access the 'data' list, providing a default empty list if it's missing or not a List
+        final List<dynamic> result = (decodedBody['data'] as List<dynamic>?) ?? [];
+        print("result $result");
+
+        // Use RxList's assignAll for efficient updates
+        productList.assignAll(result.map((e) => Data.fromJson(e)));
+        print("Data ${productList.value.toString()}");
+
+        isLoading.value = false;
+      } else {
+        // Improve error messaging to include the URL
+        Get.snackbar(
+          "Failed to load products",
+          "Server responded with status: ${response.statusCode}\nReason: ${response.reasonPhrase}\nURL: $urlAPI",
+        );
+      }
+    } catch (error) {
+      // Catch specific exceptions for better error handling
+      if (error is FormatException) {
+        Get.snackbar(
+          "Failed to load products",
+          "Error decoding server response. Please check the API response format.",
+        );
+        print("Error decoding JSON: ${error.toString()}");
+      } else if (error is http.ClientException) {
+        Get.snackbar(
+          "Failed to connect",
+          "Network error occurred while trying to reach the server.",
+        );
+        print("HTTP Client Error: ${error.toString()}");
+      } else {
+        Get.snackbar(
+          "An unexpected error occurred",
+          "Something went wrong while fetching products.",
+        );
+        print("Unexpected error: ${error.toString()}");
+      }
+    }
   }
 
   @override
   void onInit() {
     super.onInit();
+    getProduct();
     // You can perform any initialization here
   }
 
@@ -64,16 +80,4 @@ class HomeController extends GetxController {
   }
 }
 
-class FoodItems {
-  final String name;
-  final double price;
-  final String image;
-  final RxBool isFavorite;
 
-  FoodItems({
-    required this.name,
-    required this.price,
-    required this.image,
-    required this.isFavorite,
-  });
-}

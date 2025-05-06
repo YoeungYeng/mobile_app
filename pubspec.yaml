@@ -37,6 +37,8 @@ dependencies:
   get: ^4.7.2
   http: ^0.13.6
 
+  image_network: ^2.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
