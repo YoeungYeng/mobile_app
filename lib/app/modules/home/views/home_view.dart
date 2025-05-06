@@ -10,15 +10,17 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40.0),
-        child: Column(
-          children: [_buildHeader(), Expanded(child: _buildGrid(context))],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 40.0),
+          child: Column(
+            children: [_buildHeader(), Expanded(child: _buildGrid(context))],
+          ),
         ),
+        bottomNavigationBar: _buildBottomNavigationBar(),
+        backgroundColor: const Color.fromRGBO(230, 158, 243, 1),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
-      backgroundColor: const Color.fromRGBO(230, 158, 243, 1),
     );
   }
 
@@ -76,7 +78,6 @@ class HomeView extends GetView<HomeController> {
         itemBuilder: (_, index) {
           return Container(
             decoration: BoxDecoration(
-
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Card(
@@ -91,265 +92,288 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
 
+                      child: Center(
+                        child: InkWell(
+                          child: ImageNetwork(
+                            onTap: () {
+                              showModalBottomSheet(
+                                // backgroundColor: Colors.transparent,
+                                // allows rounded corners
+                                context: context,
+                                isScrollControlled: true,
 
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 2.0),
-
-
-                          child: Center(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.zoomIn,
-                              child: InkWell(
-                              
-                                child: ImageNetwork(
-                                  
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      isScrollControlled: true, // Add this line
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          constraints: BoxConstraints(
-                                            maxHeight: MediaQuery.of(context).size.height,
-                                          ), // Add this line
-                                          child: SingleChildScrollView(
-                                            padding: const EdgeInsets.all(16),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                /// Location & Delivery Time
-                                                Column(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Container(
-                                                            padding: const EdgeInsets.all(12),
-                                                            decoration: BoxDecoration(
-                              
-                                                              borderRadius:
-                                                              BorderRadius.circular(16),
-                                                              boxShadow: const [
-                                                                BoxShadow(
-                                                                  color: Colors.black12,
-                                                                  blurRadius: 5,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            child: const Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons.location_on,
-                                                                  size: 28,
-                                                                ),
-                                                              ],
-                                                            ),
+                                // Add this line
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    // Add this line
+                                    height:
+                                        MediaQuery.of(
+                                          context,
+                                        ).size.height, // make it full screen
+                                    child: SingleChildScrollView(
+                                      padding: EdgeInsets.only(
+                                        bottom:
+                                            MediaQuery.of(
+                                              context,
+                                            ).viewInsets.bottom,
+                                        left: 16,
+                                        right: 16,
+                                        top: 16,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          /// Location & Delivery Time
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                            12,
                                                           ),
-                                                        ),
-                                                        const SizedBox(width: 8.0),
-                                                        const Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
-                                                          children: [
-                                                            Text(
-                                                              "Location",
-                                                              style: TextStyle(
-                                                                fontWeight: FontWeight.bold,
-                                                              ),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              16,
                                                             ),
-                                                            Text(
-                                                              "Please select your location",
-                                                              style: TextStyle(
-                                                                fontSize: 12,
-                                                                color: Colors.grey,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(height: 8.0),
-                                                    Row(
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () {},
-                                                          child: Container(
-                                                            padding: const EdgeInsets.all(12),
-                                                            decoration: BoxDecoration(
-                                                              color: Colors.white,
-                                                              borderRadius:
-                                                              BorderRadius.circular(16),
-                                                              boxShadow: const [
-                                                                BoxShadow(
-                                                                  color: Colors.black12,
-                                                                  blurRadius: 5,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            child: const Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons.access_time_outlined,
-                                                                  size: 28,
-                                                                ),
-                                                              ],
-                                                            ),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            color:
+                                                                Colors.black12,
+                                                            blurRadius: 5,
                                                           ),
-                                                        ),
-                                                        const SizedBox(width: 8.0),
-                                                        const Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
-                                                          children: [
-                                                            Text(
-                                                              "Delivery Time",
-                                                              style: TextStyle(
-                                                                fontWeight: FontWeight.bold,
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              "25-30 minutes",
-                                                              style: TextStyle(
-                                                                fontSize: 12,
-                                                                color: Colors.grey,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                              
-                                                ///Food Image
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                    top: 8.0,
-                                                    bottom: 16.0,
-                                                  ),
-                                                  child: Container(
-                                                    height: 360,
-                                                    width: Get.width,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(16),
-                                                      color: Colors.grey,
-                                                    ),
-                                                    child: ImageNetwork(
-                                                      image: "${item[index].image}",
-                                                      height: 350.0,
-                                                      width: 240.0,
-                                                      duration: 1500,
-                                                      curve: Curves.easeIn,
-                                                      onPointer: true,
-                                                      debugPrint: false,
-                                                      backgroundColor: Colors.blue,
-                                                      fitAndroidIos: BoxFit.cover,
-                                                      fitWeb: BoxFitWeb.cover,
-                                                      onLoading: const Center(
-                                                        child: CircularProgressIndicator(),
+                                                        ],
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                              
-                                                /// Food Title & Price
-                                                Text(
-                                                  item[index].title.toString(),
-                                                  style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                              
-                                                /// Quantity Selector
-                                                Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Rp. ${item[index].price}",
-                                                      style: const TextStyle(
-                                                        fontSize: 18,
-                                                        color: Colors.pink,
-                                                      ),
-                                                    ),
-                                                    Obx(
-                                                          () => Row(
+                                                      child: const Row(
                                                         children: [
-                                                          _quantityButton(
-                                                            Icons.remove,
-                                                            controller.decrement,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                            const EdgeInsets.symmetric(
-                                                              horizontal: 8.0,
-                                                            ),
-                                                            child: Text(
-                                                              '${controller.quantity}',
-                                                              style: const TextStyle(
-                                                                fontSize: 18,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          _quantityButton(
-                                                            Icons.add,
-                                                            controller.increment,
+                                                          Icon(
+                                                            Icons.location_on,
+                                                            size: 28,
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                              
-                                                /// Recipe Description
-                                                const SizedBox(height: 8.0),
-                                                const Text(
-                                                  "Recipe:",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16,
                                                   ),
-                                                ),
-                                                const SizedBox(height: 4),
-                                                Text(
-                                                  item[index].title.toString(),
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
+                                                  const SizedBox(width: 8.0),
+                                                  const Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Location",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "Please select your location",
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          color: Colors.grey,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 8.0),
+                                              Row(
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                            12,
+                                                          ),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              16,
+                                                            ),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            color:
+                                                                Colors.black12,
+                                                            blurRadius: 5,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      child: const Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .access_time_outlined,
+                                                            size: 28,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 8.0),
+                                                  const Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Delivery Time",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "25-30 minutes",
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          color: Colors.grey,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+
+                                          ///Food Image
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 8.0,
+                                              bottom: 16.0,
+                                            ),
+                                            child: Container(
+                                              height: 360,
+                                              width: Get.width,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                color: Colors.grey,
+                                              ),
+                                              child: ImageNetwork(
+                                                image: "${item[index].image}",
+                                                height: 350.0,
+                                                width: 240.0,
+                                                duration: 1500,
+                                                curve: Curves.easeIn,
+                                                onPointer: true,
+                                                debugPrint: false,
+                                                backgroundColor: Colors.blue,
+                                                fitAndroidIos: BoxFit.cover,
+                                                fitWeb: BoxFitWeb.cover,
+                                                onLoading: const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
                                                 ),
-                                                const Text(
-                                                  maxLines: 3,
-                                                  " is a light and fresh comfort food classic. Made with a few simple ingredients such as tuna, mayonnaise, onion and celery...",
-                                                ),
-                                                const Text(
-                                                  "more",
-                                                  style: TextStyle(color: Colors.red),
-                                                ),
-                                              ],
+                                              ),
                                             ),
                                           ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  image: "${item[index].image}",
-                                  height: 190,
-                                  width: 190,
-                                  onLoading: const CircularProgressIndicator(),
-                                ),
-                              ),
-                            ),
+
+                                          /// Food Title & Price
+                                          Text(
+                                            item[index].title.toString(),
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+
+                                          /// Quantity Selector
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Rp. ${item[index].price}",
+                                                style: const TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.pink,
+                                                ),
+                                              ),
+                                              Obx(
+                                                () => Row(
+                                                  children: [
+                                                    _quantityButton(
+                                                      Icons.remove,
+                                                      controller.decrement,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.symmetric(
+                                                            horizontal: 8.0,
+                                                          ),
+                                                      child: Text(
+                                                        '${controller.quantity}',
+                                                        style: const TextStyle(
+                                                          fontSize: 18,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    _quantityButton(
+                                                      Icons.add,
+                                                      controller.increment,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          /// Recipe Description
+                                          const SizedBox(height: 8.0),
+                                          const Text(
+                                            "Recipe:",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            item[index].title.toString(),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const Text(
+                                            maxLines: 3,
+                                            " is a light and fresh comfort food classic. Made with a few simple ingredients such as tuna, mayonnaise, onion and celery...",
+                                          ),
+                                          const Text(
+                                            "more",
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            image: "${item[index].image}",
+                            height: 190,
+                            width: 190,
+                            onLoading: const CircularProgressIndicator(),
                           ),
-
+                        ),
                       ),
-
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
