@@ -9,7 +9,13 @@ class HomeController extends GetxController {
   var productList = <Data>[].obs;
   var isLoading = true.obs;
 
+  var quantity = 1.obs;
 
+  void increment() => quantity.value++;
+
+  void decrement() {
+    if (quantity.value > 1) quantity.value--;
+  }
   // fetch api
   Future<void> getProduct() async {
     const String urlAPI = "http://127.0.0.1:8000/api/getAllProduct";

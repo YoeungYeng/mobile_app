@@ -7,7 +7,7 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(seconds: 10), (){
+    Future.delayed(Duration(seconds: 3), (){
       Get.offNamed('/login');
     });
   }

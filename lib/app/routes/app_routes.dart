@@ -10,6 +10,7 @@ abstract class Routes {
   static const LOGINFORM = _Paths.LOGINFORM;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
+  static const FOOD_DETAIL = _Paths.FOOD_DETAIL;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const LOGINFORM = '/loginform';
   static const SPLASH_SCREEN = '/splash-screen';
   static const HOME_SCREEN = '/home-screen';
+  static const FOOD_DETAIL = '/food-detail';
 }

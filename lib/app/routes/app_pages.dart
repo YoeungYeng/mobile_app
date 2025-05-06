@@ -8,6 +8,8 @@ import '../../form/register/bindings/register_binding.dart';
 import '../../form/register/views/register_view.dart';
 import '../../view/slideShow/bindings/slide_show_binding.dart';
 import '../../view/slideShow/views/slide_show_view.dart';
+import '../modules/food_detail/bindings/food_detail_binding.dart';
+import '../modules/food_detail/views/food_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_screen/bindings/home_screen_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.HOME_SCREEN,
       page: () => const HomeScreenView(),
       binding: HomeScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.FOOD_DETAIL,
+      page: () => const FoodDetailView(),
+      binding: FoodDetailBinding(),
     ),
   ];
 }
