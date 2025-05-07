@@ -24,40 +24,40 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildHeader() {
-    return Column(
-      children: [
-        Center(
-          child: Image.asset("assets/image/logo.png", width: 200, height: 200),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: <Widget>[
-              const Icon(Icons.menu, color: Colors.blue, size: 20.0),
-              const SizedBox(width: 8.0),
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search...",
-                    prefixIcon: IconButton(
-                      onPressed: () {
-                        // Handle search
-                      },
-                      icon: const Icon(Icons.search),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget _buildHeader() {
+  //   return Column(
+  //     children: [
+  //       Center(
+  //         child: Image.asset("assets/image/logo.png", width: 200, height: 200),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.all(8.0),
+  //         child: Row(
+  //           children: <Widget>[
+  //             const Icon(Icons.menu, color: Colors.blue, size: 20.0),
+  //             const SizedBox(width: 8.0),
+  //             Expanded(
+  //               child: TextField(
+  //                 decoration: InputDecoration(
+  //                   hintText: "Search...",
+  //                   prefixIcon: IconButton(
+  //                     onPressed: () {
+  //                       // Handle search
+  //                     },
+  //                     icon: const Icon(Icons.search),
+  //                   ),
+  //                   border: OutlineInputBorder(
+  //                     borderRadius: BorderRadius.circular(20.0),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildGrid(context) {
     final HomeController controller = Get.find();

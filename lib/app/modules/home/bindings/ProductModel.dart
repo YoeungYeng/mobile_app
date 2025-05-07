@@ -1,4 +1,4 @@
-class Product {
+class Product {}
 // lib/models/ProductModel.dart
 
 class Product {
@@ -37,5 +37,4 @@ class Product {
       'imageUrl': imageUrl,
     };
   }
-}
 }

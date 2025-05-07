@@ -16,6 +16,9 @@ import '../modules/home_screen/bindings/home_screen_binding.dart';
 import '../modules/home_screen/views/home_screen_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
+import 'package:mobile_app/app/modules/home/views/home_view.dart';
+import 'package:mobile_app/app/modules/loginform/views/loginform_view.dart';
+
 
 part 'app_routes.dart';
 
