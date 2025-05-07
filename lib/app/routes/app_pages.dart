@@ -24,6 +24,9 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
+import 'package:mobile_app/app/modules/home/views/home_view.dart';
+import 'package:mobile_app/app/modules/loginform/views/loginform_view.dart';
+
 
 part 'app_routes.dart';
 

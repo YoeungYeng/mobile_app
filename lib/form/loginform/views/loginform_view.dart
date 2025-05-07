@@ -1,15 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mobile2/app/routes/app_pages.dart';
-
-import '../controllers/loginform_controller.dart';
-
-class LoginformView extends GetView<LoginformController> {
-  const LoginformView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
 
       body: Center(
         child: SingleChildScrollView(
@@ -105,6 +100,9 @@ class LoginformView extends GetView<LoginformController> {
           ),
         ),
       ),
+=======
+      // your UI here
+>>>>>>> 56d6cc40c1b52dc58c225d74b0a0303bf4401d57
     );
   }
 }
