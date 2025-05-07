@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
             children: [_buildHeader(), Expanded(child: _buildGrid(context))],
           ),
         ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
+        // bottomNavigationBar: ,
         backgroundColor: const Color.fromRGBO(230, 158, 243, 1),
       ),
     );
@@ -418,24 +418,7 @@ class HomeView extends GetView<HomeController> {
     });
   }
 
-  Widget _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Category'),
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-      ],
-      currentIndex: 0,
-      selectedItemColor: Colors.redAccent,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      onTap: (index) {
-        // Handle navigation based on the index
-        print('Bottom navigation item tapped: $index');
-      },
-    );
-  }
+
 
   Widget _quantityButton(IconData icon, VoidCallback onPressed) {
     return InkWell(

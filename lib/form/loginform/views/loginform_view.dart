@@ -46,7 +46,7 @@ class LoginformView extends GetView<LoginformController> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.toNamed(Routes.HOME); // Connect to controller logic
+                    Get.toNamed(Routes.BOTTOM_BAR); // Connect to controller logic
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -96,6 +96,7 @@ class LoginformView extends GetView<LoginformController> {
                         decoration: TextDecoration.underline,
                       ),
                     ),
+                    /// don't have account yet
                     onTap: () => Get.toNamed(Routes.REGISTER), // <-- make sure Routes.LOGIN exists
                   ),
                 ],

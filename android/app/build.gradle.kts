@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-     // Add this line
+    // Add this line
     namespace = "com.example.mobile2"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
-//    ndkVersion = "27.0.12077973"
+    //ndkVersion = "27.0.12077973"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
