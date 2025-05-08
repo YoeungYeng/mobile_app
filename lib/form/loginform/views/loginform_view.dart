@@ -46,7 +46,7 @@ class LoginformView extends GetView<LoginformController> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.toNamed(Routes.HOME); // Connect to controller logic
+                    Get.toNamed(Routes.BOTTOM_BAR); // Connect to controller logic
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),

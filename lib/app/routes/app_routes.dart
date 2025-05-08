@@ -10,6 +10,10 @@ abstract class Routes {
   static const LOGINFORM = _Paths.LOGINFORM;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
+  static const BOTTOM_BAR = _Paths.BOTTOM_BAR;
+  static const FAVORITE = _Paths.FAVORITE;
+  static const CART = _Paths.CART;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -21,4 +25,8 @@ abstract class _Paths {
   static const LOGINFORM = '/loginform';
   static const SPLASH_SCREEN = '/splash-screen';
   static const HOME_SCREEN = '/home-screen';
+  static const BOTTOM_BAR = '/bottom-bar';
+  static const FAVORITE = '/favorite';
+  static const CART = '/cart';
+  static const PROFILE = '/profile';
 }

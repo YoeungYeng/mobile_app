@@ -1,15 +1,12 @@
 import 'package:get/get.dart';
 
-class SplashScreenController extends GetxController {
-  //TODO: Implement SplashScreenController
+class CartController extends GetxController {
+  //TODO: Implement CartController
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(Duration(seconds: 3), (){
-      Get.offNamed('/login');
-    });
   }
 
   @override
