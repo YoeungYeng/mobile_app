@@ -18,6 +18,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_screen/bindings/home_screen_binding.dart';
 import '../modules/home_screen/views/home_screen_view.dart';
+import '../modules/payment/bindings/payment_binding.dart';
+import '../modules/payment/views/payment_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -73,7 +75,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FAVORITE,
-      page: () => const FavoriteView(),
+      page: () => FavoriteView(),
       binding: FavoriteBinding(),
     ),
     GetPage(
@@ -83,8 +85,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () =>  ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT,
+      page: () =>  PaymentView(),
+      binding: PaymentBinding(),
     ),
   ];
 }

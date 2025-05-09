@@ -8,7 +8,7 @@ import 'package:mobile2/app/modules/home/model/Product.dart';
 class HomeController extends GetxController {
   var productList = <Data>[].obs;
   var isLoading = true.obs;
-
+  RxInt cartItemCount = 2.obs;
   var quantity = 1.obs;
 
   void increment() => quantity.value++;

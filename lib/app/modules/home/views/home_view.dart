@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
         // bottomNavigationBar: _buildBottomNavigationBar(),
-        backgroundColor: const Color.fromRGBO(230, 158, 243, 1),
+        backgroundColor: const Color.fromRGBO(250, 228, 243, 1),
       ),
     );
   }
@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: <Widget>[
-              const Icon(Icons.menu, color: Colors.blue, size: 20.0),
+              // const Icon(Icons.menu, color: Colors.blue, size: 20.0),
               const SizedBox(width: 8.0),
               Expanded(
                 child: TextField(
@@ -88,7 +88,15 @@ class HomeView extends GetView<HomeController> {
                     padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [], // You can add favorite icon here
+                      children: [
+                        // InkWell(
+                        //   child: Obx(
+                        //     () =>
+                        //   ),
+                        //   // onTap: () => controller.toggleFavorite(item),
+                        // ),
+                        Icon(Icons.favorite, color: Colors.redAccent),
+                      ], // You can add favorite icon here
                     ),
                   ),
                   Expanded(
@@ -403,10 +411,15 @@ class HomeView extends GetView<HomeController> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const Icon(
-                          Icons.add_circle,
-                          color: Colors.redAccent,
-                          size: 24.0,
+                        InkWell(
+                          onTap: () {
+                            print("Hello cart");
+                          },
+                          child: const Icon(
+                            Icons.add_circle,
+                            color: Colors.redAccent,
+                            size: 24.0,
+                          ),
                         ),
                       ],
                     ),

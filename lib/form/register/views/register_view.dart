@@ -123,7 +123,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     InkWell(
                       child: Text("Login", style: TextStyle(
-                        color: Colors.blue, fontSize: 18,
+                        color: Colors.blue, fontSize: 20,
                         decoration: TextDecoration.underline
                       ),),
                       onTap: () => {Get.toNamed(Routes.LOGINFORM)},

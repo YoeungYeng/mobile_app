@@ -61,23 +61,18 @@ class LoginformView extends GetView<LoginformController> {
                 ),
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.facebook, size: 40.0, color: Colors.blue[700]),
-                    onPressed: () {
-                      print('Facebook login pressed');
-                    },
-                  ),
-                  const SizedBox(width: 20.0),
-                  IconButton(
-                    icon: const Icon(Icons.mail_outline, size: 40.0, color: Colors.redAccent),
-                    onPressed: () {
-                      print('Gmail login pressed');
-                    },
-                  ),
-                ],
+              IconButton(
+                icon: Icon(Icons.facebook, size: 40.0, color: Colors.blue[700]),
+                onPressed: () {
+                  print('Facebook login pressed');
+                },
+              ),
+              const SizedBox(width: 20.0),
+              IconButton(
+                icon: const Icon(Icons.mail_outline, size: 40.0, color: Colors.redAccent),
+                onPressed: () {
+                  print('Gmail login pressed');
+                },
               ),
               const SizedBox(height: 20),
               Row(
@@ -85,14 +80,14 @@ class LoginformView extends GetView<LoginformController> {
                 children: [
                   const Text(
                     "Don't have an account? ",
-                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                    style: TextStyle(color: Colors.blue, fontSize: 20),
                   ),
                   InkWell(
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 16,
+                        fontSize: 20,
                         decoration: TextDecoration.underline,
                       ),
                     ),
