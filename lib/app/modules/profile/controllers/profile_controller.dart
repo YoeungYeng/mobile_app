@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
+  var name = 'Your Name'.obs;
+  var email = 'email@yahoo.com'.obs;
+  var phone = '+6238191818344'.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,5 @@ class ProfileController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+
 }
