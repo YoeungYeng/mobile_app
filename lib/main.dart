@@ -6,7 +6,7 @@ import 'package:mobile2/form/login/views/login_view.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+void    main() {
   runApp(
     GetMaterialApp(
       title: "Small Team",
