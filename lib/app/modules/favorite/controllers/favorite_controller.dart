@@ -2,23 +2,27 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:mobile2/app/modules/favorite/model%20favorite/FavoriteModel.dart';
-
+import 'package:mobile2/app/modules/favorite/model/FavoriteModel.dart';
 
 class FavoriteController extends GetxController {
   //TODO: Implement FavoriteController
 
-  var favoriteList = <Data2>[].obs;
+  var favoriteList = <Data>[].obs;
   var isLoading = true.obs;
-  var quantity = 1.obs;
+  var quantities = <int, int>{}.obs;
 
-  void increment() => quantity.value++;
-
-  void decrement() {
-    if (quantity.value > 1) quantity.value--;
+  void incrementQuantity(Data item) {
+    quantities.update(item.id!, (value) => value + 1, ifAbsent: () => 2);
   }
+
+  void decrementQuantity(Data item) {
+    if (quantities[item.id] != null && quantities[item.id]! > 1) {
+      quantities.update(item.id!, (value) => value - 1);
+    }
+  }
+
   Future<void> getFavorite() async {
-    const String urlAPI = "http://127.0.0.1:8000/api/getAllfavorites";
+    const String urlAPI = "http://127.0.0.1:8000/api/getAllProduct";
 
     try {
       final response = await http.get(Uri.parse(urlAPI));
@@ -31,8 +35,13 @@ class FavoriteController extends GetxController {
         print("result $result");
 
         // Use RxList's assignAll for efficient updates
-        favoriteList.assignAll(result.map((e) => Data2.fromJson(e)));
+        favoriteList.assignAll(result.map((e) => Data.fromJson(e)));
         print("Data ${favoriteList.value.toString()}");
+
+        // Initialize quantities for each item
+        for (var item in favoriteList) {
+          quantities[item.id!] = 1;
+        }
 
         isLoading.value = false;
       } else {
@@ -65,10 +74,12 @@ class FavoriteController extends GetxController {
       }
     }
   }
+
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getFavorite(); // Call getFavorite when the controller is initialized
   }
 
   @override
@@ -80,6 +91,4 @@ class FavoriteController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-
 }

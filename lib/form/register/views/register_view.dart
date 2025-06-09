@@ -10,7 +10,6 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(
@@ -26,9 +25,9 @@ class RegisterView extends GetView<RegisterController> {
               const SizedBox(height: 20),
               const SizedBox(height: 30),
               TextField(
-                // controller: controller.emailController,
+                controller: controller.nameController,
                 // CONNECTED TO CONTROLLER
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   labelText: 'name',
                   border: OutlineInputBorder(),
@@ -36,7 +35,8 @@ class RegisterView extends GetView<RegisterController> {
               ),
               const SizedBox(height: 15),
               TextField(
-                // controller: controller.phoneController, // CONNECTED TO CONTROLLER
+                controller: controller.emailController,
+                // CONNECTED TO CONTROLLER
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'email',
@@ -45,8 +45,9 @@ class RegisterView extends GetView<RegisterController> {
               ),
               const SizedBox(height: 15),
               TextField(
-                // controller: controller.phoneController, // CONNECTED TO CONTROLLER
-                keyboardType: TextInputType.emailAddress,
+                controller: controller.passwordController,
+
+                // CONNECTED TO CONTROLLER
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'password',
@@ -56,22 +57,28 @@ class RegisterView extends GetView<RegisterController> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SizedBox(
-                  width: double.infinity, // Make the button take full width
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Handle Log In logic
-                      print("Hello Login");
-                    },
-                    child: const Text('Sign in'),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      textStyle: const TextStyle(fontSize: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
+                  width: double.infinity,
+                  child: Obx(
+                    () => ElevatedButton(
+                      onPressed:
+                          controller.isLoading.value
+                              ? null
+                              : controller.getRegister,
+                      child:
+                          controller.isLoading.value
+                              ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                              : const Text('Sign in'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        textStyle: const TextStyle(fontSize: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
                       ),
-                      backgroundColor: Colors.red,
-                      // Example background color
-                      foregroundColor: Colors.white,
                     ),
                   ),
                 ),
@@ -113,7 +120,7 @@ class RegisterView extends GetView<RegisterController> {
               GestureDetector(
                 onTap: () {
                   print("Move to Login Screen");
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView())); //<--  You'd need a LoginView()
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView())); //<--  You'd need a LoginView()
                 },
                 child: Row(
                   children: [
@@ -122,12 +129,15 @@ class RegisterView extends GetView<RegisterController> {
                       style: TextStyle(color: Colors.blue, fontSize: 20),
                     ),
                     InkWell(
-                      child: Text("Login", style: TextStyle(
-                        color: Colors.blue, fontSize: 20,
-                        decoration: TextDecoration.underline
-                      ),),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 20,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
                       onTap: () => {Get.toNamed(Routes.LOGINFORM)},
-
                     ),
                   ],
                 ),

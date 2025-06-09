@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
+import 'package:mobile2/form/loginform/bindings/loginform_binding.dart';
+import 'package:mobile2/form/loginform/views/loginform_view.dart';
 
 import '../../form/login/bindings/login_binding.dart';
 import '../../form/login/views/login_view.dart';
-import '../../form/loginform/bindings/loginform_binding.dart';
-import '../../form/loginform/views/loginform_view.dart';
 import '../../form/register/bindings/register_binding.dart';
 import '../../form/register/views/register_view.dart';
 import '../../view/slideShow/bindings/slide_show_binding.dart';
@@ -54,7 +54,7 @@ class AppPages {
       binding: RegisterBinding(),
     ),
     GetPage(
-      name: _Paths.LOGINFORM,
+      name: _Paths.LoginForm,
       page: () => const LoginformView(),
       binding: LoginformBinding(),
     ),

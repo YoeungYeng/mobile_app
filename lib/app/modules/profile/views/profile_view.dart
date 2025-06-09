@@ -10,13 +10,9 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(250, 228, 243, 1),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black87, // Adjust as needed
-      ),
+
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -93,7 +89,7 @@ class ProfileView extends StatelessWidget {
                 // style: Get.textTheme.subtitle2,
               ),
               Text(
-                '+6238191818344', // Replace with user's phone number
+                '+0191818344', // Replace with user's phone number
                 // style: Get.textTheme.subtitle2,
               ),
             ],

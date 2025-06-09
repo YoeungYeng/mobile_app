@@ -7,7 +7,7 @@ abstract class Routes {
   static const SLIDE_SHOW = _Paths.SLIDE_SHOW;
   static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
-  static const LOGINFORM = _Paths.LOGINFORM;
+  static const LOGINFORM = _Paths.LoginForm;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
   static const BOTTOM_BAR = _Paths.BOTTOM_BAR;
@@ -23,7 +23,7 @@ abstract class _Paths {
   static const SLIDE_SHOW = '/slide-show';
   static const LOGIN = '/login';
   static const REGISTER = '/register';
-  static const LOGINFORM = '/loginform';
+  static const LoginForm  = '/loginform';
   static const SPLASH_SCREEN = '/splash-screen';
   static const HOME_SCREEN = '/home-screen';
   static const BOTTOM_BAR = '/bottom-bar';

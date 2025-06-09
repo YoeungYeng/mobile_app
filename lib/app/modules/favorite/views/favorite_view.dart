@@ -60,7 +60,9 @@ class FavoriteView extends GetView<FavoriteController> {
   }
 
   Widget _buildGrid(BuildContext context) {
-    final controller = Get.find<FavoriteController>();
+    // Ensure the controller is being found, not created again here if it's already put elsewhere.
+    // If you haven't put it in a binding or higher up, this line is correct for this view.
+    final controller = Get.put(FavoriteController());
 
     return Obx(() {
       if (controller.isLoading.value) {
@@ -91,7 +93,7 @@ class FavoriteView extends GetView<FavoriteController> {
                     alignment: Alignment.topRight,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Icon(Icons.favorite, color: Colors.redAccent),
+                      child: const Icon(Icons.favorite, color: Colors.redAccent),
                     ),
                   ),
                   Expanded(
@@ -194,19 +196,19 @@ class FavoriteView extends GetView<FavoriteController> {
                     "Rp. ${item.price}",
                     style: const TextStyle(fontSize: 18, color: Colors.pink),
                   ),
-                  Row(
+                  Obx(() => Row(
                     children: [
-                      _quantityButton(Icons.remove, controller.decrement),
+                      _quantityButton(Icons.remove, () => controller.decrementQuantity(item)),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Obx(() => Text(
-                          '${controller.quantity.value}',
+                        child: Text(
+                          '${controller.quantities[item.id]}',
                           style: const TextStyle(fontSize: 18),
-                        )),
+                        ),
                       ),
-                      _quantityButton(Icons.add, controller.increment),
+                      _quantityButton(Icons.add, () => controller.incrementQuantity(item)),
                     ],
-                  ),
+                  )),
                 ],
               ),
               const SizedBox(height: 8),

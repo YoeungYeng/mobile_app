@@ -1,7 +1,7 @@
 class FavoriteModel {
   int? status;
   String? message;
-  List<Data2>? data;
+  List<Data>? data;
 
   FavoriteModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class FavoriteModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data2>[];
+      data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data2.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class FavoriteModel {
   }
 }
 
-class Data2 {
+class Data {
   int? id;
   String? title;
   int? price;
@@ -43,7 +43,7 @@ class Data2 {
   String? updatedAt;
   String? imageUrl;
 
-  Data2(
+  Data(
       {this.id,
         this.title,
         this.price,
@@ -59,7 +59,7 @@ class Data2 {
         this.updatedAt,
         this.imageUrl});
 
-  Data2.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     price = json['price'];

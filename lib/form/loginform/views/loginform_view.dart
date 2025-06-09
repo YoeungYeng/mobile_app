@@ -25,7 +25,7 @@ class LoginformView extends GetView<LoginformController> {
 
               const SizedBox(height: 30),
               TextField(
-                // controller: controller.emailController,
+                controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'Email',
@@ -34,7 +34,7 @@ class LoginformView extends GetView<LoginformController> {
               ),
               const SizedBox(height: 15),
               TextField(
-                // controller: controller.passwordController,
+                controller: controller.passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Password',
@@ -42,22 +42,33 @@ class LoginformView extends GetView<LoginformController> {
                 ),
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.BOTTOM_BAR); // Connect to controller logic
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    textStyle: const TextStyle(fontSize: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Obx(
+                        () => ElevatedButton(
+                      onPressed:
+                      controller.isLoading.value
+                          ? null
+                          : controller.getLogin,
+                      child:
+                      controller.isLoading.value
+                          ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                          : const Text('Login in'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        textStyle: const TextStyle(fontSize: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                      ),
                     ),
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
                   ),
-                  child: const Text('Sign In'),
                 ),
               ),
               const SizedBox(height: 10),
